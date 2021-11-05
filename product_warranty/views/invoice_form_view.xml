@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_view_move_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.inherited</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <page name="other_info" position="after">
+                <page string="Warranty Info" name="warranty_info_tab">
+                    <field name="warranty_ids">
+                        <tree name="warranty_info">
+                            <field name="name"/>
+                            <field name="expiry_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="sequence_product_warranty" model="ir.sequence">
+            <field name="name">Product Warranty</field>
+            <field name="code">product.warranty</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">PW</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+
+    <record model="ir.actions.act_window" id="action_product_warranty_sock_moves">
+        <field name="name">Stock Moves</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('move_id.warranty_id', '=', active_id)]</field>
+    </record>
+
+
+    <record id="view_warranty_tree" model="ir.ui.view">
+        <field name="name">product.warranty.tree</field>
+        <field name="model">product.warranty.warranty</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="invoice_id"/>
+                <field name="inv_date"/>
+                <field name="activity_ids" widget="list_activity" optional="show"/>
+                <field name="state" optional="show" widget='badge' decoration-info="state == 'approved'"
+                       decoration-warning="state == 'to_approve'" decoration-muted="state == 'draft'"
+                       decoration-danger="state == 'cancel'" decoration-primary="state == 'received'"
+                       decoration-success="state == 'done'"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_warranty_kanban" model="ir.ui.view">
+        <field name="name">product.warranty.kanban</field>
+        <field name="model">product.warranty.warranty</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="invoice_id"/>
+                <field name="inv_date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        Serial No :
+                                        <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Customer :
+                                        <field name="partner_id"/>
+                                    </li>
+                                    <li>
+                                        Invoice :
+                                        <field name="invoice_id"/>
+                                    </li>
+                                    <li>
+                                        Date :
+                                        <field name="inv_date"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="view_warranty_form" model="ir.ui.view">
+        <field name="name">product.warranty.form</field>
+        <field name="model">product.warranty.warranty</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="action_submit" name="action_submit" string="Submit" class="btn-primary" type="object"
+                            confirm="Are you sure you need to submit Product Warranty Request?"
+                            attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button id="action_approve" name="action_approve" string="Approve" class="btn-primary" type="object"
+                            confirm="Are you sure to grant approve for the Product Warranty Request?"
+                            attrs="{'invisible': [('state', 'not in', ['to_approve'])]}"
+                            groups="product_warranty.group_product_warranty_manager"/>
+                    <button id="action_receive" name="action_receive" string="Receive Product" type="object"
+                            confirm="Are you sure to record received for the Product Warranty Request?"
+                            class="btn-primary" attrs="{'invisible': [('state', 'not in', ['approved'])]}"
+                            groups="product_warranty.group_product_warranty_manager"/>
+                    <button id="action_return" name="action_return" string="Return Product" type="object"
+                            class="btn-primary" attrs="{'invisible': [('state', 'not in', ['received'])]}"
+                            groups="product_warranty.group_product_warranty_manager"/>
+                    <button id="action_to_draft" name="action_to_draft" string="Set To Draft" class="btn-primary"
+                            type="object" attrs="{'invisible': [('state', 'not in', ['cancel'])]}"/>
+                    <button name="action_to_draft" string="Set To Draft" type="object"
+                            attrs="{'invisible': [('state', 'in', ['draft','cancel','received'])]}"/>
+                    <button id="action_cancel" name="action_cancel" string="Cancel" type="object"
+                            confirm="Are you sure you need to cancel Product Warranty Request?"
+                            attrs="{'invisible': [('state', 'in', ['draft','cancel','received','done'])]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to_approve,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_product_warranty_sock_moves)d"
+                                string="Product Moves"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-exchange"
+                                attrs="{'invisible': [('state','not in', ['received', 'done'])]}"/>
+                    </div>
+                    <div class="oe_title">
+                        <!-- Number -->
+                        <h1 class="mt0">
+                            <field name="name"/>
+                        </h1>
+
+                    </div>
+                    <group>
+                        <group>
+                            <field name="invoice_id" domain="[('state','!=','draft')]" position="attributes"
+                                   required="True" attrs="{'readonly': [('state','not in', 'draft')]}"/>
+                            <field name="partner_id" context="{'show_address': 1}"
+                                   options='{"always_reload": True}'/>
+                            <field name="inv_date" string="Purchase Date"/>
+                        </group>
+                        <group>
+                            <field name="product_id"
+                                   options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                   domain="product_id_domain"
+                                   required="True"
+                                   attrs="{'invisible': [('invoice_id', '=', False)],
+                                   'readonly': [('state','not in', 'draft')]}"
+                            />
+                            <field name="product_id_domain" invisible="1"/>
+                            <field name="has_tracking" invisible="1"/>
+                            <field name="lot_name"
+                                   context="{'default_product_id': product_id}"
+                                   domain="[('product_id','=', product_id)]"
+                                   options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                   attrs="{
+                                   'invisible': ['|', ('has_tracking', '=', 'none'), ('product_id', '=', 'False')],
+                                   'readonly': [('state','not in', 'draft')],
+                                   'required': [('has_tracking', '!=', 'none')]
+                                   }"
+
+                            />
+                            <field name="expiry_date" force_save="1"
+                                   attrs="{'invisible': [('product_id', '=', False)]}"/>
+                        </group>
+                    </group>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_warranty_location" model="stock.location">
+        <field name="name">Warranty Location</field>
+        <field name="usage">internal</field>
+        <field name="company_id"></field>
+    </record>
+
+    <record id="action_warranty" model="ir.actions.act_window">
+        <field name="name">Warranty</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.warranty.warranty</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create warranty for invoices!
+            </p>
+        </field>
+    </record>
+
+    <!-- products menu form -->
+    <record id="product_template_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="view_id" ref="product.product_template_kanban_view"/>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{"search_default_filter_to_sell":1, "sale_multi_pricelist_product_template": 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product
+            </p>
+            <p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem id="product_warranty_menu_root"
+              name="Product Warranty"
+              sequence="10"/>
+
+    <menuitem id="warranty_items_menu_root"
+              name="Warranty"
+              parent="product_warranty_menu_root"
+              action="action_warranty"
+              sequence="10"/>
+
+    <menuitem action="product_template_action"
+              id="menu_product_template_action"
+              parent="product_warranty_menu_root"
+              sequence="20"/>
+
+</odoo>

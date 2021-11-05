@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_product_warranty">
+        <field name="name">Product Warranty</field>
+        <field name="description">User category for product warranty management.</field>
+    </record>
+    <record id="group_product_warranty_user" model="res.groups">
+        <field name="name">Warranty User</field>
+        <field name="category_id" ref="module_category_product_warranty"/>
+    </record>
+    <record id="group_product_warranty_manager" model="res.groups">
+        <field name="name">Warranty Manager</field>
+        <field name="category_id" ref="module_category_product_warranty"/>
+        <field name="implied_ids" eval="[(4, ref('group_product_warranty_user'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_teachers_kanban" model="ir.ui.view">
+        <field name="name">school.teachers.kanban</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="department"/>
+                <field name="gender"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        Name : <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Department : <field name="department"/>
+                                    </li>
+                                    <li>
+                                        Gender : <field name="gender"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+
+    <record id="view_teachers_tree" model="ir.ui.view">
+        <field name="name">school.teachers.tree</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="department"/>
+                <field name="gender"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_teachers_form" model="ir.ui.view">
+        <field name="name">school.teachers.form</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="department"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="salary"/>
+                        </group>
+                        <field name="note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_teachers" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.teachers</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first teacher!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem id="Teachers_menu_root"
+              name="Teachers"
+              parent="school_menu_root"
+              action="action_teachers"
+              sequence="10"/>
+
+</odoo>
