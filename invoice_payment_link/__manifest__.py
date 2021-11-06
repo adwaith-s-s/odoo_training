@@ -10,8 +10,10 @@
     'website': 'https://www.odoodemo.com',
     'depends': [
         'base',
+        'account',
     ],
     'data': [
+        'data/mail_invoice_payment.xml'
     ],
     'demo': [],
     'qweb': [],
