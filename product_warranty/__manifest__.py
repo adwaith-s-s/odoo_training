@@ -24,6 +24,8 @@
         'views/warranty.xml',
         'views/product.xml',
         'views/invoice_form_view.xml',
+        'report/report.xml',
+        'report/warranty_details_template.xml',
     ],
     'demo': [],
     'qweb': [],
