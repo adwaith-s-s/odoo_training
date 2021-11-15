@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_report_product_warranty_form" model="ir.ui.view">
+        <field name="name">product.warranty.report.wizard.form</field>
+        <field name="model">product.warranty.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Print Product Warranty">
+                <group>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="product_ids"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print_report" type="object" string="Print" class="btn-primary"/>
+                    <button string="Cancel" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_product_warranty" model="ir.actions.act_window">
+        <field name="name">Product Warranty</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.warranty.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_product_warranty_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -21,6 +21,7 @@
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
+        'wizards/product_warranty_report_view.xml',
         'views/warranty.xml',
         'views/product.xml',
         'views/invoice_form_view.xml',

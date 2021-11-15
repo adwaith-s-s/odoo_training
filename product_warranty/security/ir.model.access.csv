@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_product_warranty_manger,access.product.warranty,model_product_warranty_warranty,product_warranty.group_product_warranty_user,1,1,1,0
-access_product_warranty_user,access.product.warranty,model_product_warranty_warranty,product_warranty.group_product_warranty_manager,1,1,1,1
+access_product_warranty_user,access.product.warranty,model_product_warranty_warranty,product_warranty.group_product_warranty_user,1,1,1,0
+access_product_warranty_manager,access.product.warranty,model_product_warranty_warranty,product_warranty.group_product_warranty_manager,1,1,1,1
+access_product_warranty_report_wizard,access.product.warranty.report.wizard,model_product_warranty_report_wizard,product_warranty.group_product_warranty_manager,1,1,1,1
+

@@ -225,4 +225,15 @@
               parent="product_warranty_menu_root"
               sequence="20"/>
 
+    <menuitem id="menu_reporting"
+              parent="product_warranty_menu_root"
+              name="Reporting"
+              sequence="30"/>
+
+    <menuitem id="menu_product_warranty_report"
+              action="action_report_product_warranty"
+              name="Product Warranty"
+              parent="menu_reporting"
+              sequence="10"/>
+
 </odoo>
