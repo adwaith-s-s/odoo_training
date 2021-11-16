@@ -9,6 +9,72 @@
                     <div class="text-center">
                         <h2>Product Warranty Details</h2>
                     </div>
+                    <table>
+                        <tr>
+                            <td>Customer</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="form_data.get('partner_id')">
+                                    <t t-esc="form_data['partner_id'][1]"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Start_Date</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="form_data.get('start_date')">
+                                    <t t-esc="form_data['start_date']"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>End_Date</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="form_data.get('end_date')">
+                                    <t t-esc="form_data['end_date']"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table class="table table-bordered mt32">
+                        <thread>
+                            <tr>
+                                <th name="th_warranty_id" class="text-left">
+                                    <span>Warranty Id</span>
+                                </th>
+                                <th name="th_invoice" class="text-left">
+                                    <span>Invoice</span>
+                                </th>
+                                <th name="th_product" class="text-left">
+                                    <span>Product</span>
+                                </th>
+                            </tr>
+                        </thread>
+                        <t t-set="warranty_count" t-value="0"/>
+                        <t t-foreach="warranties" t-as="line">
+                            <t t-set="warranty_count" t-value="warranty_count + 1"/>
+                            <tr>
+                                <td>
+                                    <span t-esc="line['name']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['invoice_id'][1]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['product_id'][1]"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <p>
+                        <strong>Total Warranty Requests :</strong>
+                        <t t-esc="warranty_count"/>
+                    </p>
+
                 </div>
             </t>
         </t>

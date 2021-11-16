@@ -14,9 +14,25 @@ class ProductWarrantyReportWizard(models.TransientModel):
     end_date = fields.Date(string="End Date")
 
     def action_print_report(self):
-        warranties = self.env['product.warranty.warranty'].search_read([])
+        domain = []
+        customer = self.partner_id
+        if customer:
+            domain += [('partner_id', '=', customer.id)]
+        product_ids = []
+        for rec in self.product_ids:
+            product_ids.append(rec.id)
+        if product_ids:
+            domain += [('product_id', 'in', product_ids)]
+        start_date = self.start_date
+        if start_date:
+            domain += [('create_date', '>=', start_date)]
+        end_date = self.end_date
+        if end_date:
+            domain += [('create_date', '<=', end_date)]
+
+        warranties = self.env['product.warranty.warranty'].search_read(domain)
         data = {
-            'form': self.read()[0],
-            'warranties': warranties
+            'form_data': self.read()[0],
+            'warranties': warranties,
         }
         return self.env.ref('product_warranty.action_report_product_warranty').report_action(self, data=data)
