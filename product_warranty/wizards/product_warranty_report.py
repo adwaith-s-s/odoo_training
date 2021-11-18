@@ -13,6 +13,15 @@ class ProductWarrantyReportWizard(models.TransientModel):
     start_date = fields.Date(string="Start Date")
     end_date = fields.Date(string="End Date")
 
+    def action_print_excel_report(self):
+        domain = []
+        warranties = self.env['product.warranty.warranty'].search_read()
+        data = {
+            'warranties': warranties,
+            'form_data': self.read()[0]
+        }
+        return self.env.ref('product_warranty.action_report_product_warranty_xlsx').report_action(self, data=data)
+
     def action_print_report(self):
         domain = []
         customer = self.partner_id
@@ -36,3 +45,5 @@ class ProductWarrantyReportWizard(models.TransientModel):
             'warranties': warranties,
         }
         return self.env.ref('product_warranty.action_report_product_warranty').report_action(self, data=data)
+
+

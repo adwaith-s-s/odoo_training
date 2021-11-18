@@ -16,7 +16,8 @@
         'stock',
         'mail',
         'web_domain_field',
-        'stock'
+        'stock',
+        'report_xlsx'
     ],
     'data': [
         'security/ir.model.access.csv',
