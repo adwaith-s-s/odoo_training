@@ -15,7 +15,22 @@ class ProductWarrantyReportWizard(models.TransientModel):
 
     def action_print_excel_report(self):
         domain = []
-        warranties = self.env['product.warranty.warranty'].search_read()
+        customer = self.partner_id
+        if customer:
+            domain += [('partner_id', '=', customer.id)]
+        product_ids = []
+        for rec in self.product_ids:
+            product_ids.append(rec.id)
+        if product_ids:
+            domain += [('product_id', 'in', product_ids)]
+        start_date = self.start_date
+        if start_date:
+            domain += [('create_date', '>=', start_date)]
+        end_date = self.end_date
+        if end_date:
+            domain += [('create_date', '<=', end_date)]
+
+        warranties = self.env['product.warranty.warranty'].search_read(domain)
         data = {
             'warranties': warranties,
             'form_data': self.read()[0]

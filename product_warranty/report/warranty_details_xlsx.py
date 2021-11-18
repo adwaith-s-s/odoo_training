@@ -8,14 +8,26 @@ class ProductWarrantyXlsxReport(models.AbstractModel):
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, warranties):
-        print("Excel report loading", data['warranties'])
-        sheet = workbook.add_worksheet('warranties')
+        sheet = workbook.add_worksheet('Warranty Requests')
+        sheet.set_column('A:A', 15)
+        sheet.set_column('B:B', 20)
+        sheet.set_column('C:C', 35)
         bold = workbook.add_format({'bold': True})
 
-        row = 3
-        col = 3
+        row = 0
+        col = 0
+
         sheet.write(row, col, 'Reference', bold)
         sheet.write(row, col+1, 'Invoice', bold)
         sheet.write(row, col+2, 'Product', bold)
+
+        for warranties in data['warranties']:
+            row += 1
+            sheet.write(row, col, warranties['name'])
+            sheet.write(row, col + 1, warranties['invoice_id'][1])
+            sheet.write(row, col + 2, warranties['product_id'][1])
+
+
+
 
 

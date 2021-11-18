@@ -51,7 +51,7 @@
                         ${object.invoice_user_id.signature | safe}
                         % endif
                         <br/>
-                        <b><a style="font-size: 2rem;color: #241571;" href="${object.get_base_url()}/my/invoices/${object.id}?model=account.invoice,res_id=${object.id},access_token=${object.access_token}">Pay Now</a></b>
+                        <b><a style="font-size: 2rem;color: #241571;" href="${object.link}">Pay Now</a></b>
                     </p>
                 </div>
             </field>

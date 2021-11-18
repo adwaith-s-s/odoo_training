@@ -27,10 +27,11 @@
         <field name="model">product.warranty.warranty</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="create_date" string="Request Date" widget="date"/>
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="invoice_id"/>
-                <field name="inv_date"/>
+                <field name="inv_date" string="Invoice Date"/>
                 <field name="activity_ids" widget="list_activity" optional="show"/>
                 <field name="state" optional="show" widget='badge' decoration-info="state == 'approved'"
                        decoration-warning="state == 'to_approve'" decoration-muted="state == 'draft'"
@@ -105,7 +106,7 @@
                     <button id="action_to_draft" name="action_to_draft" string="Set To Draft" class="btn-primary"
                             type="object" attrs="{'invisible': [('state', 'not in', ['cancel'])]}"/>
                     <button name="action_to_draft" string="Set To Draft" type="object"
-                            attrs="{'invisible': [('state', 'in', ['draft','cancel','received'])]}"/>
+                            attrs="{'invisible': [('state', 'in', ['draft','cancel', 'done'])]}"/>
                     <button id="action_cancel" name="action_cancel" string="Cancel" type="object"
                             confirm="Are you sure you need to cancel Product Warranty Request?"
                             attrs="{'invisible': [('state', 'in', ['draft','cancel','received','done'])]}"/>
