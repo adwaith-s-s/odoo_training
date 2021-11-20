@@ -12,7 +12,7 @@ class ProductWarranty(models.Model):
     _order = "id desc"
 
     invoice_id = fields.Many2one('account.move', string='Invoice')
-    partner_id = fields.Many2one('res.partner', string="Customer", related='invoice_id.partner_id')
+    partner_id = fields.Many2one('res.partner', string="Customer", related='invoice_id.partner_id', store=True)
     product_id = fields.Many2one('product.product', string="Product", ondelete='set null')
     product_id_domain = fields.Char(compute="_compute_product_id_domain", readonly=True, store=False,)
 

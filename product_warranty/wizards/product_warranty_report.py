@@ -14,51 +14,51 @@ class ProductWarrantyReportWizard(models.TransientModel):
     end_date = fields.Date(string="End Date")
 
     def action_print_excel_report(self):
-        domain = []
-        customer = self.partner_id
-        if customer:
-            domain += [('partner_id', '=', customer.id)]
-        product_ids = []
-        for rec in self.product_ids:
-            product_ids.append(rec.id)
-        if product_ids:
-            domain += [('product_id', 'in', product_ids)]
-        start_date = self.start_date
-        if start_date:
-            domain += [('create_date', '>=', start_date)]
-        end_date = self.end_date
-        if end_date:
-            domain += [('create_date', '<=', end_date)]
+        # domain = []
+        product_ids_list =[]
+        for products in self.product_ids:
+            product_ids_list.append(products.id)
+        product_ids_private = str(product_ids_list)
+        product_ids_private = product_ids_private.lstrip("[").rstrip("]")
+        print(product_ids_private)
 
-        warranties = self.env['product.warranty.warranty'].search_read(domain)
+        query = 'SELECT * FROM public.product_warranty_warranty'
+        if self.partner_id or self.product_ids or self.start_date or self.end_date:
+            query += '\nWHERE'
+
+        if self.partner_id:
+            query += '\npartner_id =' + str(self.partner_id)
+        if self.partner_id and (self.product_ids or self.start_date or self.end_date):
+            query += '\nAND'
+
+        if self.product_ids:
+            query += '\nproduct_id in (' + product_ids_private + ')'
+        if self.product_ids and (self.start_date or self.end_date):
+            query += '\nAND'
+
+        if self.start_date:
+            query += '\ncreate_date > \'' + str(self.start_date) + '\''
+        if self.start_date and self.end_date:
+            query += '\nAND'
+
+        if self.end_date:
+            query += '\ncreate_date < \'' + str(self.end_date) + '\''
+
+        query += '\nORDER BY id ASC'
+
+        self.env.cr.execute(query)
+        docs = self.env.cr.fetchall()
+
+        # warranties = self.env['product.warranty.warranty'].search_read(domain)
         data = {
-            'warranties': warranties,
+            'warranties': docs,
             'form_data': self.read()[0]
         }
         return self.env.ref('product_warranty.action_report_product_warranty_xlsx').report_action(self, data=data)
 
     def action_print_report(self):
-        domain = []
-        customer = self.partner_id
-        if customer:
-            domain += [('partner_id', '=', customer.id)]
-        product_ids = []
-        for rec in self.product_ids:
-            product_ids.append(rec.id)
-        if product_ids:
-            domain += [('product_id', 'in', product_ids)]
-        start_date = self.start_date
-        if start_date:
-            domain += [('create_date', '>=', start_date)]
-        end_date = self.end_date
-        if end_date:
-            domain += [('create_date', '<=', end_date)]
-
-        warranties = self.env['product.warranty.warranty'].search_read(domain)
         data = {
             'form_data': self.read()[0],
-            'warranties': warranties,
         }
         return self.env.ref('product_warranty.action_report_product_warranty').report_action(self, data=data)
-
 

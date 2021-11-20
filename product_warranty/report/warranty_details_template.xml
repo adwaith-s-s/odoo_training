@@ -54,17 +54,17 @@
                             </tr>
                         </thread>
                         <t t-set="warranty_count" t-value="0"/>
-                        <t t-foreach="warranties" t-as="line">
+                        <t t-foreach="docs" t-as="line">
                             <t t-set="warranty_count" t-value="warranty_count + 1"/>
                             <tr>
                                 <td>
-                                    <span t-esc="line['name']"/>
+                                    <span t-esc="line[7]"/>
                                 </td>
                                 <td>
-                                    <span t-esc="line['invoice_id'][1]"/>
+                                    <span t-esc="line[1]"/>
                                 </td>
                                 <td>
-                                    <span t-esc="line['product_id'][1]"/>
+                                    <span t-esc="line[11]"/>
                                 </td>
                             </tr>
                         </t>

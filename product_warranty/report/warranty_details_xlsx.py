@@ -14,6 +14,8 @@ class ProductWarrantyXlsxReport(models.AbstractModel):
         sheet.set_column('C:C', 35)
         bold = workbook.add_format({'bold': True})
 
+        print(data['warranties'])
+
         row = 0
         col = 0
 
@@ -23,9 +25,9 @@ class ProductWarrantyXlsxReport(models.AbstractModel):
 
         for warranties in data['warranties']:
             row += 1
-            sheet.write(row, col, warranties['name'])
-            sheet.write(row, col + 1, warranties['invoice_id'][1])
-            sheet.write(row, col + 2, warranties['product_id'][1])
+            sheet.write(row, col, warranties[7])
+            sheet.write(row, col + 1, warranties[1])
+            sheet.write(row, col + 2, warranties[11])
 
 
 
