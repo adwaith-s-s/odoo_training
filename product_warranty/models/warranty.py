@@ -110,6 +110,7 @@ class ProductWarranty(models.Model):
 
     @api.model
     def create(self, vals):
+        print(vals)
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'product.warranty') or 'New'
