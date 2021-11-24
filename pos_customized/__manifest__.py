@@ -16,9 +16,10 @@
     ],
     'data': [
         'views/product.xml',
+        'views/templates.xml',
     ],
     'demo': [],
-    'qweb': [],
+    'qweb': ['static/src/xml/pos.xml'],
     'installable': True,
     'application': True,
     'auto_install': False,
