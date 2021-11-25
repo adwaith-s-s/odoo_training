@@ -1,4 +1,4 @@
-odoo.define('pos_customized.product_owner', function(require){
+odoo.define('pos_customized.ProductOwner', function(require){
     'use strict';
     var models = require('point_of_sale.models');
     var _super_product = models.PosModel.prototype;
