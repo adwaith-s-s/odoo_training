@@ -2,8 +2,9 @@
 <odoo>
     <template id="point_of_sale_product_owner" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
-<!--            <script type="text/javascript" src="/pos_customized/static/src/js/product_owner.js"></script>-->
             <script type="text/javascript" src="/pos_customized/static/src/js/receipt.js"></script>
+            <script type="text/javascript" src="/pos_customized/static/src/js/pos_order_line.js"></script>
+<!--            <script type="text/javascript" src="/pos_customized/static/src/js/pos_product_owner.js"></script>-->
         </xpath>
     </template>
 </odoo>

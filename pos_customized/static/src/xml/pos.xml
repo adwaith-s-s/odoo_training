@@ -8,7 +8,6 @@
                 <t t-esc="line.product_owner[1]"/>
             </div>
             </t>
-
     	</xpath>
     </t>
 </templates>

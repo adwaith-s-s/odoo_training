@@ -19,7 +19,10 @@
         'views/templates.xml',
     ],
     'demo': [],
-    'qweb': ['static/src/xml/pos.xml'],
+    'qweb': [
+        'static/src/xml/pos.xml',
+        'static/src/xml/orderlines.xml',
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,
