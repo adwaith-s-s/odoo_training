@@ -10,7 +10,7 @@ odoo.define('pos_customized.receipt', function(require){
     models.Orderline = models.Orderline.extend({
         export_for_printing: function(){
             var line = _super_orderline.export_for_printing.apply(this, arguments);
-            line.product_owner = this.get_product().product_owner[1].substring(0, 12);
+            line.product_owner = this.get_product().product_owner;
             line.product_rating = this.get_product().rating;
             console.log("LIne", line.product_rating);
             console.log("owner", line.product_owner[1]);

@@ -5,15 +5,47 @@
             <t t-if="line.product_owner">
                 <div class="pos-receipt-left-padding">
                     <span><b>Product Owner : </b></span>
-                    <span><t t-esc="line.product_owner"/></span>
+                    <span><t t-esc="line.product_owner[1].substring(0, 18)"/></span>
                 </div>
             </t>
+
             <t t-if="line.product_rating">
-                <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
-                    <span>Product Rating </span>
-                    <t t-esc="line.product_rating"/><i class="fa fa-star fa-fw"></i>
-                </div>
+                <t t-if="line.product_rating==5">
+                    <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
+                        <span>Product Rating </span>
+                        <i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i>
+                        <i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i>
+                        <i class="fa fa-star fa-fw"></i>
+                    </div>
+                </t>
+                <t t-if="line.product_rating==4">
+                    <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
+                        <span>Product Rating </span>
+                        <i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i>
+                        <i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i>
+                    </div>
+                </t>
+                <t t-if="line.product_rating==3">
+                    <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
+                        <span>Product Rating </span>
+                        <i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i>
+                        <i class="fa fa-star fa-fw"></i>
+                    </div>
+                </t>
+                <t t-if="line.product_rating==2">
+                    <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
+                        <span>Product Rating </span>
+                        <i class="fa fa-star fa-fw"></i><i class="fa fa-star fa-fw"></i>
+                    </div>
+                </t>
+                <t t-if="line.product_rating==1">
+                    <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
+                        <span>Product Rating </span>
+                        <i class="fa fa-star fa-fw"></i>
+                    </div>
+                </t>
             </t>
+
     	</xpath>
     </t>
 </templates>
