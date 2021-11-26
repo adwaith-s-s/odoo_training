@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template id="template" xml:space="preserve">
+
+    <t t-name="Productrating" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-img')]" position="inside">
+            <t t-if="props.product.rating">
+                <span class="product-rating">
+                <t t-esc="props.product.rating" /><i class="fa fa-star fa-fw"></i>
+            </span>
+            </t>
+        </xpath>
+    </t>
+</template>

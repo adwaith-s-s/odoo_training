@@ -9,7 +9,6 @@ models.Orderline = models.Orderline.extend({
 
     get_product_owner: function(){
         const product = this.product;
-        console.log(this.product.product_owner)
         return this.product.product_owner[1];
     },
 

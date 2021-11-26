@@ -22,6 +22,7 @@
     'qweb': [
         'static/src/xml/pos.xml',
         'static/src/xml/orderlines.xml',
+        'static/src/xml/posrating.xml',
     ],
     'installable': True,
     'application': True,

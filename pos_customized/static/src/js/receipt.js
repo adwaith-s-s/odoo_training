@@ -4,13 +4,15 @@ odoo.define('pos_customized.receipt', function(require){
     var models = require('point_of_sale.models');
 
     models.load_fields('product.product', 'product_owner');
+    models.load_fields('product.product', 'rating');
 
     var _super_orderline = models.Orderline.prototype;
     models.Orderline = models.Orderline.extend({
         export_for_printing: function(){
             var line = _super_orderline.export_for_printing.apply(this, arguments);
-            line.product_owner = this.get_product().product_owner;
-            console.log("LIne", line);
+            line.product_owner = this.get_product().product_owner[1].substring(0, 12);
+            line.product_rating = this.get_product().rating;
+            console.log("LIne", line.product_rating);
             console.log("owner", line.product_owner[1]);
             return line;
         },

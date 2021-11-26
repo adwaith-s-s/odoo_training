@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="product_owner"/>
+                <field name="rating"/>
             </field>
         </field>
     </record>

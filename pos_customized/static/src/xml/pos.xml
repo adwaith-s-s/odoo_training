@@ -4,9 +4,15 @@
     	<xpath expr="//WrappedProductNameLines" position="after">
             <t t-if="line.product_owner">
                 <div class="pos-receipt-left-padding">
-                <span>Product Owner: </span>
-                <t t-esc="line.product_owner[1]"/>
-            </div>
+                    <span><b>Product Owner : </b></span>
+                    <span><t t-esc="line.product_owner"/></span>
+                </div>
+            </t>
+            <t t-if="line.product_rating">
+                <div class="pos-receipt-left-padding" style="font-size: 1rem;font-style: oblique;">
+                    <span>Product Rating </span>
+                    <t t-esc="line.product_rating"/><i class="fa fa-star fa-fw"></i>
+                </div>
             </t>
     	</xpath>
     </t>
