@@ -14,14 +14,14 @@
                     <h1>Submit Maintenance Request</h1>
                 </t>
                 <form method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="name" class="form-control" placeholder="Maintenance Request"
+                               required=""/>
+                    </div>
                     <div class="row">
                         <div class="col-lg-7 col-xl-6 mr-lg-auto">
-                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                            <div class="form-group">
-                                <label>Title</label>
-                                <input type="text" name="name" class="form-control" placeholder="Maintenance Request"
-                                       required=""/>
-                            </div>
                             <div class="form-group">
                                 <label>Select Equipment</label>
                                 <select class="form-control" name="equipment_id">
