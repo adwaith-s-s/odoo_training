@@ -13,6 +13,7 @@
         'website',
     ],
     'data': [
+        'data/menu.xml',
         'views/templates.xml'
     ],
     'demo': [],

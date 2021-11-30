@@ -5,7 +5,7 @@
             <div class="container mt-4 mb-5">
                 <t t-if="submitted">
                     <h3 class="alert alert-success mt16 mb16">
-                        <i class="fa fa-thumbs-up"/>
+                        <i class="fa fa-check-circle mr-2"/>
                         Maintenance Request submitted successfully
                     </h3>
                     <h1>Submit Another Maintenance Request</h1>
@@ -70,13 +70,12 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <input class="form-control oe_inline" name="duration"
-                                       type="text" autocomplete="off" value="00.00"/>
+                                       type="number" autocomplete="off" value="00.00"/>
                                     </div>
                                     <div class="col-6 d-flex align-items-center pl-0">
                                         <span>hours</span>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 <label>Priority</label>
@@ -89,7 +88,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Notes</label>
-                                <textarea name="issue_description" class="form-control" placeholder="Internal Notes"/>
+                                <textarea name="issue_description" class="form-control"
+                                          style="height: calc(1.5em + 0.75rem + 2px);" placeholder="Internal Notes"/>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary mb-5" style="margin-left: 15px;">

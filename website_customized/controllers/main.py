@@ -18,7 +18,8 @@ class Main(http.Controller):
                 maintenance_type = post.get('maintenance_type')
                 user_id = int(post.get('user_id'))
                 schedule_date = post.get('schedule_date')
-                duration = post.get('duration')
+                duration = float(post.get('duration'))
+                print(duration)
                 priority = post.get('priority')
                 description = post.get('description')
                 request.env['maintenance.request'].sudo().create({
