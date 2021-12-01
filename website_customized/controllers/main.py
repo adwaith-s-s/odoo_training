@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-
+from odoo.addons.portal.controllers.web import Home
 
 from odoo import http
 from odoo.http import request
+import base64
 
 
 class Main(http.Controller):
@@ -41,3 +42,54 @@ class Main(http.Controller):
             'users': request.env['res.users'].search([]),
             'submitted': post.get('submitted', False)
         })
+
+
+class WebsiteSort(Home):
+    @http.route()
+    def index(self, **kw):
+
+        current_website = request.website
+        super(WebsiteSort, self).index()
+        website_product_ids = request.env['product.template'].search([('is_published', '=', True)], limit=4)
+
+        product_records_sold = {}
+        sorted_product_records_sold = []
+        sales = request.env['sale.order'].search([('website_id', '=', current_website.id),('state', 'in', ('sale', 'done'))])
+        for s in sales:
+            orders = request.env['sale.order.line'].search([('order_id', '=', s.id)])
+            for order in orders:
+                if order.product_id:
+                    if order.product_id not in product_records_sold:
+                        product_records_sold.update({order.product_id: 0})
+                    product_records_sold[order.product_id] += order.product_uom_qty
+
+        for product_id, product_uom_qty in sorted(product_records_sold.items(), key=lambda kv: kv[1], reverse=True)[:6]:
+            sorted_product_records_sold.append(
+                {'product': product_id.image_512, 'id': product_id.product_tmpl_id.id, 'name': product_id.product_tmpl_id.name, 'qty': int(product_uom_qty)})
+
+
+
+        product_records_view = {}
+        sorted_product_records_view = []
+        visit = request.env['website.track'].search([])
+        for v in visit:
+            if v.product_id:
+                product_records_view.update({v.product_id: 0})
+                for x in visit:
+                    if v.product_id == x.product_id:
+                        product_records_view[v.product_id] += 1
+
+        for product_id, product_uom_qty in sorted(product_records_view.items(), key=lambda kv: kv[1], reverse=True)[:6]:
+            sorted_product_records_view.append(
+                {'product': product_id.image_512, 'id': product_id.product_tmpl_id.id, 'name': product_id.product_tmpl_id.name})
+
+
+
+
+
+        return request.render('website.homepage', {
+            'most_sold_products': sorted_product_records_sold,
+            'most_viewed_products': sorted_product_records_view
+        })
+
+

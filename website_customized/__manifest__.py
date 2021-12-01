@@ -11,6 +11,8 @@
     'depends': [
         'base',
         'website',
+        'sale',
+        'product',
     ],
     'data': [
         'data/menu.xml',
