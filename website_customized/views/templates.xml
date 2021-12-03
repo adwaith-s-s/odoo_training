@@ -105,6 +105,7 @@
     <template id="website_customized_homepage" name="Website Customized Home" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
             <main>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                 <div id="wrap" class="oe_structure oe_empty">
                     <div class="container text-center o_homepage_editor_welcome_message" style="min-height: 485.234px; padding-bottom:0;">
                         <h2 class="mt0">Most Sold
@@ -113,19 +114,17 @@
                         <p class="lead d-none d-md-block">These are the most sold products in our
                             <b>Collection</b>
                         </p>
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-
                         <div class="album">
                             <div class="container">
                                 <div class="row">
-                                    <t t-foreach="most_sold_products" t-as="website_product_id">
+                                    <t t-foreach="most_sold_products" t-as="website_product_id_sold">
 
                                         <div class="col-4 mb-4">
 
                                             <div class="card shadow-sm">
-                                                <t t-if="website_product_id['product']">
+                                                <t t-if="website_product_id_sold['product']">
                                                     <div style="width:100%; height:225px;overflow: hidden;">
-                                                        <img t-attf-src="data:image/png;base64,#{website_product_id['product']}"
+                                                        <img t-attf-src="data:image/png;base64,#{website_product_id_sold['product']}"
                                                              class="img oe_product_image"
                                                              style="padding: 0px; margin: 0px; width:auto; height:100%;"/>
                                                     </div>
@@ -139,24 +138,21 @@
                                                     <rect width="100%" height="100%" fill="#55595c"></rect>
                                                 </svg>
                                                 </t>
-
-
                                                 <div class="card-body">
                                                     <p class="card-text">
-                                                        <t t-esc="website_product_id['name']"/>
+                                                        <t t-esc="website_product_id_sold['name']"/>
                                                     </p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <a t-attf-href="/shop/product/#{website_product_id['id']}">
+                                                            <a t-attf-href="/shop/product/#{website_product_id_sold['id']}">
                                                                 <button type="button"
                                                                     class="btn btn-outline-secondary">
                                                                 View
                                                             </button>
                                                             </a>
-
                                                         </div>
                                                         <small class="text-muted">sold :
-                                                            <t t-esc="website_product_id['qty']"/>
+                                                            <t t-esc="website_product_id_sold['qty']"/>
                                                         </small>
                                                     </div>
                                                 </div>
@@ -176,8 +172,6 @@
                         <p class="lead d-none d-md-block">These are the most viewed products in our
                             <b>Collection</b>
                         </p>
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-
                         <div class="album">
                             <div class="container">
                                 <div class="row">
@@ -202,8 +196,6 @@
                                                     <rect width="100%" height="100%" fill="#55595c"></rect>
                                                 </svg>
                                                 </t>
-
-
                                                 <div class="card-body">
                                                     <p class="card-text">
                                                         <t t-esc="website_product_id_views['name']"/>
@@ -214,10 +206,12 @@
                                                                 <button type="button"
                                                                     class="btn btn-outline-secondary">
                                                                 View
-                                                            </button>
+                                                                </button>
                                                             </a>
-
                                                         </div>
+                                                        <small class="text-muted">Views :
+                                                            <t t-esc="website_product_id_views['views']"/>
+                                                        </small>
                                                     </div>
                                                 </div>
                                             </div>
