@@ -1,0 +1,79 @@
+
+  .not-found {
+    width: 560px;
+    height: 225px;
+    margin-right: -10px;
+  }
+  .starry-sky {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    background-color: #a8a5a2;
+  }
+  .search-icon {
+    display: inline-block;
+  }
+  .notfound-copy {
+    color: #fff;
+    position: fixed;
+    top: 25px;
+    right: 10%;
+    text-align: right;
+  }
+  h1 {
+     font-weight: 700;
+    font-size: 40px;
+  }
+  a {
+    font-weight: 300;
+    color: $color-white;
+  
+    text-decoration: none;
+  }
+  a:hover {
+    font-weight: 300;
+    color: $color-hover;
+ 
+    text-decoration: none;
+  }
+  /* change to alternating star opacities */
+  .all-stars {
+    animation: blinkblink 7s linear infinite;
+  }
+  
+  @keyframes blinkblink {  
+    50% { opacity: 0.1; }
+  }
+  .moon {
+  }
+  input[type=text] {
+    color: #fff;
+    background-color: #ffffff;
+    padding:5px; 
+    border: none; 
+    border-bottom:2px solid #ccc; 
+    font-size: 18px;
+  }
+  input[type=text]:focus {
+    border-color:none; 
+    border-bottom:2px solid #ccc;
+    }
+
+  @media (max-width: 647px) { 
+    .moon {
+      padding-top: -500px;
+    }
+  }
+
+  .options
+  {
+      margin-top: 20px;
+      padding-right: 20px;
+
+      p{
+          a{
+          font-weight: 600;
+      }
+    }
+  }

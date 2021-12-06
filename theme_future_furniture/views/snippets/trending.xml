@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="trending_product_snippet" name="Trending Product Snippet">
+        <section class="trending">
+        </section>
+    </template>
+    <template id="trending_snippet" name="Trending Products Snippet">
+        <section class="demo_product">
+            <div class="container">
+                <div class="row">
+                    <t t-foreach="product_ids" t-as="product_id">
+                        <t t-set="product_tmpl_id" t-value="request.env['product.template'].search([('id','=',product_id['product_template_id'])])"/>
+<div class="col-12 col-sm-6 col-lg-3 col-md-6">
+    <div class="Product_wrap">
+        <div class="rate_tag">
+            <t t-if="product_id['rating']" t-raw="product_id['rating']"/>
+            <span t-if="product_id"
+                  t-esc="product_id['list_price']"
+                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+        </div>
+        <div class="product">
+            <div class="product img-hover-zoom img-hover-zoom--xyz">
+                <a href="preview.html">
+                    <img t-attf-src="/web/image?model=product.template&amp;field=image_1920&amp;id=#{product_id['id']}"/>
+                </a>
+            </div>
+        </div>
+        <div class="product_bottom">
+            <div class="product_bottom_left">
+                <span t-if="product_id" t-esc="product_id['display_name'].split(']',1)[1] "/>
+                <p>
+                    <a class="" href="/shop/product/#{ slug(product_tmpl_id) }">Buy Now</a>
+                </p>
+            </div>
+            <div class="product_bottom_right">
+                <div class="icons-nav right">
+                    <ul>
+                        <li>
+                            <a class="" href="#">
+                                <img src="images/icons/cart.png"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="#">
+                                <img src="images/icons/heart (5).png"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="trending" inherit_id="website.snippets" name="Trending Snippet">
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="theme_future_furniture.trending_product_snippet" t-thumbnail=""/>
+<!--               t-thumbnail="/theme_silon/static/src/img/snippets/banner_section-1.png"/>-->
+        </xpath>
+    </template>
+</odoo>

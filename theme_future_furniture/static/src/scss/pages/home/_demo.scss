@@ -1,0 +1,135 @@
+.demo_product {
+  margin-top: 90px;
+  margin-bottom: 90px;
+}
+.Product_wrap {
+  padding-top: 30px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: $color-light-grey;
+margin-bottom: 30px;
+
+  position: relative;
+
+
+
+.rate_tag {
+    position: absolute;
+    background-color: $color-white;
+z-index: 1;
+    border-radius: 2px;
+
+    padding-top: 4px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    top: 44px;
+left: 10px;
+    -webkit-box-shadow: 0px 12px 10px 0px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 12px 10px 0px rgba(0, 0, 0, 0.22);
+    box-shadow: 0px 12px 10px 0px rgba(0, 0, 0, 0.22);
+  }
+
+
+
+  .product_bottom {
+    margin-top: 15px;
+    
+    display: flex;
+
+    .product_bottom_left {
+      a {
+        font-weight: 600;
+        color: $color-theme;
+        text-decoration: none;
+        &:hover{
+          color: $color-hover;
+      }
+      }
+    }
+  }
+}
+.product {
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+  img{
+    width: 100%;
+  }
+
+  
+}
+
+/* [1] The container */
+.img-hover-zoom {
+  height: auto; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+
+
+.icons-nav { 
+
+
+ 
+
+ul{
+  display: flex;
+  list-style:none ;
+  margin-bottom: 0 !important;
+
+  
+img{
+  width:100%;
+max-width: 24px;
+margin: 10px;
+}
+
+
+}
+}
+
+
+// .img__description {
+//   position: absolute;
+//   top: -150px;
+// bottom: 0;
+// left: -38px;
+// right: 0;
+
+// width: 135%;
+// height: 135%;
+//   color:$color-grey;
+//   visibility: hidden;
+//   opacity: 0;
+//   z-index: 1;
+
+//   transition: opacity .2s, visibility .2s;
+
+// -webkit-box-shadow: 0px 12px 10px 0px rgba(0,0,0,0.22);
+// -moz-box-shadow: 0px 12px 10px 0px rgba(0,0,0,0.22);
+// box-shadow: 0px 12px 10px 0px rgba(0,0,0,0.22);;
+// background-color: #ffffff70;
+// }
+
+
+// .Product_wrap:hover .img__description {
+//   visibility: visible;
+//   opacity: 1;
+// }

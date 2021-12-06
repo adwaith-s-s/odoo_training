@@ -1,0 +1,114 @@
+.btn {
+    border: none !important;
+    outline: none !important;
+    &-primary {
+        background-color: $color-theme !important;
+        border-color: $color-theme;
+        padding: 10px 53px;
+        border-radius: 21px;
+        &:hover {
+            background-color: darken($color-theme, 5%) !important;
+            border: none; 
+        }
+    }
+    &-filter {
+        background-color: $color-theme !important;
+        border-color: $color-theme;
+        padding: 4px 22px;
+        color: $color-white !important;
+        font-weight: normal !important;
+        border-radius: 0;
+        font-size: 14px;
+        &:hover {
+            background-color: darken($color-theme, 5%) !important;
+            border: none; 
+        }
+    }
+
+
+    &-sub{
+        color: $color-white;
+        background-color: $color-theme !important;
+        border-color: $color-theme;
+        padding: 9px 24px;
+        font-size: $font-size-s;
+    
+        &:hover {
+            color: $color-white;
+            background-color: darken($color-theme, 5%) !important;
+            border: none; 
+    }
+
+}
+&-buy {
+    background-color: $color-theme !important;
+
+    padding: 7px 37px;
+    border-radius: 5px;
+    color: $color-white;
+    &:hover {
+        background-color: darken($color-theme, 5%) !important;
+        border: none; 
+        color: $color-white;
+    }
+
+    @media screen and (max-width:481px) {
+        padding: 7px 22px;
+        font-size: 14px;
+    }
+
+
+}
+
+&-cart{
+    background-color: $color-hover !important;
+    border-color: $color-hover !important;
+    padding: 7px 37px;
+    color: $color-white;
+    border-radius: 5px;
+    &:hover {
+        background-color: darken($color-hover, 5%) !important;
+        border: none; 
+        color: $color-white;
+    }
+    @media screen and (max-width:1200px) {
+        padding: 7px 22px;
+        font-size: 14px;
+    }
+
+}
+
+
+
+&-cart_p {
+    background-color: $color-hover !important;
+    border-color: $color-hover !important;
+    padding: 7px 37px;
+    color: $color-white;
+    border-radius: 5px;
+    &:hover {
+        background-color: darken($color-hover, 5%) !important;
+        border: none; 
+        color: $color-white;
+    }
+    @media screen and (max-width:481px) {
+        padding: 7px 22px;
+        font-size: 14px;
+    }
+
+}
+
+
+&-info{
+    background-color: $color-theme !important;
+    border-color: $color-theme !important;
+   
+    &:hover {
+        background-color: darken($color-theme, 5%) !important;
+        border: none; 
+        color: $color-white;
+        
+    }
+}
+
+}

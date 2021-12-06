@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="theme_fuge_assets" inherit_id="website.assets_frontend">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" type="text/css"
+                      href="/theme_future_furniture/static/src/css/style.css"/>
+            </xpath>
+            <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript"
+                        src="/theme_future_furniture/static/src/js/nav_bar_toggle.js"/>
+            </xpath>
+            <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript" src="/theme_future_furniture/static/src/js/snippets/trending.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

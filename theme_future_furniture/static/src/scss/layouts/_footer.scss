@@ -1,0 +1,53 @@
+.card-footer{
+    border-top: none !important;
+}
+
+.footer-content{
+    
+    .site-name{
+        color:$color-grey;
+        
+    }
+
+    a{
+        color: $color-theme;
+        font-weight: 600;
+        text-decoration:none;
+    }
+      padding-top: 60px;
+
+
+    .footer-x{
+        text-align: end;
+       
+        
+    }
+
+    .footer-y{
+        display: flex;
+        justify-content: end;
+    }
+
+
+
+
+.social_media {
+    ul{
+        display: flex;
+    padding-left: 0px;
+    li{
+        width: 25px;
+       margin-right: 15px;
+     
+    
+    }
+    }
+
+img{
+    width:100%
+
+}
+}
+
+}
+  

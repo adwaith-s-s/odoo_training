@@ -1,0 +1,143 @@
+.filter_sidebar{
+text-align: left;
+
+hr{
+    width: 81%;
+    display: inline-block;
+    margin: 0;
+}
+
+.filter_heading{
+    color: $color-theme;
+    margin-bottom: 9px;
+    font-size: 20px;
+}
+
+.filter_sidebar_sub{
+    padding-top: 8px;
+    padding-bottom: 12px;
+
+
+    @media screen and (max-width:576px) {
+        font-size: 14px;
+        
+    }
+    
+    .top{
+        font-weight: 800;
+    }
+
+    ul{
+        padding-left: 0px;
+
+        li{
+            line-height: 30px;
+            a{
+                color:$color-theme;
+                text-decoration: none;
+                &:hover{
+                    color: $color-hover;
+                }
+            }
+
+            
+        }
+    }
+}
+
+
+
+    .dot {
+        height: 25px;
+        width: 25px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        border: 1px solid;
+        border: 1px solid;
+
+
+        @media screen and (max-width:992px) {
+            height: 20px;
+            width: 20px;
+        }
+        @media screen and (max-width:575px) {
+            height: 13px;
+            width: 13px;
+        }
+      }
+
+
+      .white{
+          background-color: #fff !important;
+          margin-right: 5px;
+          border: 1px solid;
+              border-color: black;
+          &:hover {
+            color: $color-white;
+            background-color: darken(#fff, 5%) !important;
+            border: none; 
+    }
+      }
+
+      .theme{background-color: $color-theme !important;
+        margin-right: 5px;
+        border: 1px solid;
+        border-color: black;
+
+        &:hover {
+            color: $color-white;
+            background-color: darken(#fff, 5%) !important;
+            border: none; 
+    }
+
+
+    }
+
+    .grey{
+        background-color: $color-grey !important;
+        margin-right: 5px;
+        border: 1px solid;
+        border-color: black;
+
+        &:hover {
+          
+            background-color: darken(#fff, 5%) !important;
+            border: none; 
+    }
+    }
+
+    .blue{background-color: $color-blue !important;
+        margin-right: 5px;
+        border: 1px solid;
+        border-color: black;
+
+
+        &:hover {
+          
+            background-color: darken(#fff, 5%) !important;
+            border: none; 
+    }
+    }
+
+    .yellow{
+        background-color: $color-yellow !important;
+        border: 1px solid;
+        border-color: black;
+        &:hover {
+           
+            background-color: darken(#fff, 5%) !important;
+            border: none; 
+    }
+    }
+
+
+}
+
+.range-field{
+    width: 100%;
+    // @media screen and (max-width:768px){
+
+    // width: 30%;
+        
+    }

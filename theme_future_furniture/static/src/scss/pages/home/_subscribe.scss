@@ -1,0 +1,57 @@
+.subscribe{
+    .subscribe_bg{
+        
+        background-image: linear-gradient(rgba(17, 17, 17, 0.47), rgba(17, 17, 17, 0.79)),  url(./../images/subscribe/1525.jpg);
+        background-size: cover;
+        width: 100%;
+           background-repeat: no-repeat;
+        background-position: center; 
+
+        padding-top: 90px;
+        padding-bottom: 90px;
+        
+        
+        .subscribe_content{
+       color: $color-white;
+       p{
+           font-size: $font-size-subheading;
+       }
+
+       .sub{
+           font-size: $font-size-banner;
+           font-weight: 600;
+           margin-top: 0px;
+       }
+
+    }
+
+    .newsletter-form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        
+        @media screen and (max-width:768px){
+            flex-direction: column;
+            align-items: center;
+           
+                       
+        }
+          }
+          .form-control{
+              width: 30%;
+              margin-right: 20px;
+              @media screen and (max-width:768px){
+                margin-bottom: 20px;
+                width: 45%;
+              margin-right: 0;
+                           
+            }
+
+          }
+}
+    
+    }
+
+   
