@@ -14,7 +14,7 @@
     'data': [
         'views/header.xml',
         'views/assets.xml',
-        'views/snippets/trending.xml',
+        'views/snippets/trending.xml'
     ],
     'images': [
     ],

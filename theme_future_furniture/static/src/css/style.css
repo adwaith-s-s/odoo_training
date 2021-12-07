@@ -14,8 +14,9 @@
 }
 
 .main-nav .icons-nav {
+  margin-right: 44px;
   padding-top: 10px;
-  padding-left: 100px;
+  padding-left: 50px;
 }
 
 .main-nav .icons-nav ul {
@@ -25,6 +26,38 @@
 }
 
 .main-nav img {
+  width: 100%;
+  max-width: 24px;
+  margin: 10px;
+}
+
+.badge {
+  font-size: .6rem;
+  position: absolute;
+  top: 13px;
+  right: 75px;
+  z-index: 5;
+  width: 15px;
+  height: 15px;
+  color: #fff;
+  background-color: #418deb;
+  border-radius: 50%;
+}
+
+.badge-wish {
+  font-size: .6rem;
+  position: absolute;
+  top: 13px;
+  right: 42px;
+  z-index: 5;
+  width: 15px;
+  height: 15px;
+  color: #fff;
+  background-color: #418deb;
+  border-radius: 50%;
+}
+
+.main-nav i {
   width: 100%;
   max-width: 24px;
   margin: 10px;
@@ -49,7 +82,6 @@
 }
 
 .main-nav a, .main-nav a:hover, .main-nav a.active, .main-nav a:active, .main-nav a:visited, .main-nav a:focus {
-  color: #fefefe;
   text-decoration: none;
 }
 
@@ -327,11 +359,14 @@
 }
 
 .header-top .header-top-right a {
-  font-weight: bold;
-  color: #fff;
 }
 
-.header-top .header-top-right a:hover {
+.dropdown-toggle{
+font-weight: bold;
+color: #fff;
+}
+
+.header-top .header-top-right .dropdown-menu a:hover {
   color: #ca9503;
   text-decoration: none;
 }
@@ -394,8 +429,23 @@ header .card-text {
   font-size: 18px;
   margin-bottom: 25px;
 }
-.dropdown-menu{
-    background: transparent;
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529!important;
+    text-align: left;
+    list-style: none;
+    background-color: #FFFFFF;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
 }
 
 /* header
@@ -606,7 +656,7 @@ header .card-text {
 
 /* [3] Finally, transforming the image when container gets hovered */
 .img-hover-zoom:hover img {
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 .icons-nav ul img {

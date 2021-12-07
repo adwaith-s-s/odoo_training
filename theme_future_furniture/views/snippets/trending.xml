@@ -10,8 +10,8 @@
                 <div class="row">
                     <t t-foreach="product_ids" t-as="product_id">
                         <t t-set="product_tmpl_id" t-value="request.env['product.template'].search([('id','=',product_id['product_template_id'])])"/>
-<div class="col-12 col-sm-6 col-lg-3 col-md-6">
-    <div class="Product_wrap">
+<div class="col-12 col-sm-6 col-lg-3 col-md-6" style="display:flex;">
+    <div class="Product_wrap" style="flex: 1;">
         <div class="rate_tag">
             <t t-if="product_id['rating']" t-raw="product_id['rating']"/>
             <span t-if="product_id"
@@ -25,9 +25,13 @@
                 </a>
             </div>
         </div>
-        <div class="product_bottom">
+        <div class="product_bottom" style="align-items:center">
             <div class="product_bottom_left">
-                <span t-if="product_id" t-esc="product_id['display_name'].split(']',1)[1] "/>
+                <span t-if="product_id"
+                      t-esc="((product_id['display_name'].split(']',3)[1])[0:20]+'..')
+                      if len(product_id['display_name'].split(']',3)[1])>20
+                      else product_id['display_name'].split(']',3)[1]"
+                      style="height:1rem;max-height:1rem;"/>
                 <p>
                     <a class="" href="/shop/product/#{ slug(product_tmpl_id) }">Buy Now</a>
                 </p>
