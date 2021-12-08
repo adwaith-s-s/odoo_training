@@ -311,6 +311,7 @@
 }
 
 .header-top-wrap {
+  position: relative;
   display: flex;
   justify-content: space-between;
   margin-left: 75px;
@@ -913,6 +914,10 @@ header .card-text {
   color: #344b18;
 }
 
+.Product_wrap .card{
+border: none;
+}
+
 .icons-nav ul {
   display: flex;
   list-style: none;
@@ -924,6 +929,7 @@ header .card-text {
   max-width: 24px;
   margin: 10px;
 }
+
 
 
 

@@ -10,10 +10,11 @@
     'company': 'Demo Company',
     'maintainer': 'Demo Company',
     'website': "https://www.demo.odoo",
-    'depends': ['website', 'website_sale'],
+    'depends': ['website', 'website_sale', 'website_blog', 'website_sale_wishlist', 'website_sale_comparison'],
     'data': [
         'views/header.xml',
         'views/assets.xml',
+        'views/shop.xml',
         'views/snippets/trending.xml'
     ],
     'images': [
