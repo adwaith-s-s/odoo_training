@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="future_furniture_top_bar" name="Future Furniture Top-bar" inherit_id="website_sale.products">
+        <xpath expr="//div[hasclass('container')]" position="before">
+            <section class="banner_search mt-4">
+                <div class="container product-area">
+                    <div class="wood-touch">
+                        <h1 class="main-heading">
+                            Wood Touch
+                        </h1>
+                        <p style="margin-bottom: 25px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                            commodo ligula eget
+                            dolor.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Advance Search -->
+                            <div class="advance-search">
+                                <form class="o_wsale_products_searchbar_form w-100 w-md-auto mt-2">
+                                    <div role="search" class="input-group">
+                                        <input type="search" name="search"
+                                               class="search-query form-control oe_search_box" data-limit="5"
+                                               data-display-description="true" data-display-price="true"
+                                               data-display-image="true" data-oe-model="ir.ui.view" data-oe-id="2791"
+                                               data-oe-field="arch"
+                                               data-oe-xpath="/data/xpath[3]/form/t[1]/div[1]/input[1]"
+                                               placeholder="Search..." value="" autocomplete="off"/>
+                                        <div class="input-group-append" data-oe-model="ir.ui.view" data-oe-id="2791"
+                                             data-oe-field="arch"
+                                             data-oe-xpath="/data/xpath[3]/form/t[1]/div[1]/div[1]">
+                                            <button type="submit" class="btn btn-primary oe_search_button"
+                                                    aria-label="Search" title="Search">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input name="order" type="hidden" class="o_wsale_search_order_by" value=""
+                                           data-oe-model="ir.ui.view" data-oe-id="2791" data-oe-field="arch"
+                                           data-oe-xpath="/data/xpath[3]/form/input[1]"/>
+                                </form>
+                            </div>
+                            <div class="row d-flex justify-content-between  mt-3">
+                                <div class="col-2 align-left">
+                                    <t t-call="website_sale.pricelist_list">
+                                        <t t-set="_classes" t-valuef="mt-2 ml-md-2"/>
+                                    </t>
+
+                                </div>
+                                <div class="col-8">
+                                </div>
+                                <div class="col-2 align-right">
+                                    <t t-set="list_price_desc_label">Catalog price: High to Low</t>
+                                    <t t-set="list_price_asc_label">Catalog price: Low to High</t>
+                                    <t t-set="name_asc_label">Name: A to Z</t>
+                                    <t t-set="name_desc_label">Name: Z to A</t>
+                                    <t t-set="website_sale_sortable" t-value="[
+                                        (list_price_desc_label, 'list_price desc'),
+                                        (list_price_asc_label, 'list_price asc'),
+                                        (name_asc_label, 'name asc'),
+                                        (name_desc_label, 'name desc')
+                                    ]"/>
+                                    <t t-set="website_sale_sortable_current" t-value="[sort for sort in website_sale_sortable if sort[1]==request.params.get('order', '')]"/>
+                                    <div class="dropdown mt-2 ml-md-2 dropdown_sorty_by">
+                                        <a role="button" href="#" class="dropdown-toggle btn btn-secondary" data-toggle="dropdown">
+                                            <span class="d-none d-lg-inline">
+                                                <t t-if='len(website_sale_sortable_current)'>
+                                                    Sorting by : <t t-raw='website_sale_sortable_current[0][0]'/>
+                                                </t>
+                                                <t t-else='1'>
+                                                    Sort by
+                                                </t>
+                                            </span>
+                                            <i class="fa fa-sort-amount-asc d-lg-none"/>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <t t-foreach="website_sale_sortable" t-as="sortby">
+                                                <a role="menuitem" rel="noindex,nofollow" t-att-href="keep('/shop', order=sortby[1])" class="dropdown-item">
+                                                    <span t-raw="sortby[0]"/>
+                                                </a>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('products_pager')]" position="replace">
+            <section class="Products_main" style="margin-bottom:5px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 ">
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="product_right_top">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <template id="categories_recursive" name="Category list">
+        <li>
+            <a t-attf-href="/shop/category/#{slug(c)}">
+                <t t-esc="c.name"/>
+                <sup class="top">
+                    <t t-esc="c.category_count"/>
+                </sup>
+            </a>
+        </li>
+        <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy pl-3">
+            <t t-foreach="c.child_id" t-as="c">
+                <t t-if="not search or c.id in search_categories_ids">
+                    <t t-call="theme_future_furniture.categories_recursive"/>
+                </t>
+            </t>
+        </ul>
+    </template>
+    <template id="future_furniture_categories" name="Future Furniture Categories"
+              inherit_id="website_sale.products_categories" customize_show="True" priority="1" active="True">
+        <xpath expr="//div[@id='wsale_products_categories_collapse']" position="replace">
+            <div class="filter_sidebar">
+                <div class="filter_sidebar-main">
+                    <div class="">
+                        <h3 class="filter_heading">
+                            Categories
+                        </h3>
+                    </div>
+                    <div class="filter_sidebar_sub">
+                        <div class="ecommerce_shoe-type">
+                            <ul class="list">
+                                    <li>
+                                        <a t-att-href="keep('/shop', category=0)">All products
+                                            <sup class="top"></sup>
+                                        </a>
+                                    </li>
+                                    <t t-foreach="categories" t-as="c">
+                                        <t t-call="theme_future_furniture.categories_recursive"/>
+                                    </t>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

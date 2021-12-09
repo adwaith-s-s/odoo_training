@@ -11,62 +11,6 @@
                 <section t-attf-class="shop gap col #{'o_wsale_layout_list' if layout_mode == 'list' else ''}">
                     <div class="wrapper product-area">
                         <div class="container">
-                            <div class="wood-touch">
-                                <h1 class="main-heading">
-                                    Wood Touch
-                                </h1>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                </p>
-                            </div>
-
-                            <div class="row d-flex justify-content-between">
-                                <div class="col-2 align-left">
-                                    <t t-call="website_sale.pricelist_list">
-                                        <t t-set="_classes" t-valuef="mt-2 ml-md-2"/>
-                                    </t>
-
-                                </div>
-                                <div class="col-8">
-
-                                </div>
-                                <div class="col-2 align-right">
-                                    <t t-set="list_price_desc_label">Catalog price: High to Low</t>
-                                    <t t-set="list_price_asc_label">Catalog price: Low to High</t>
-                                    <t t-set="name_asc_label">Name: A to Z</t>
-                                    <t t-set="name_desc_label">Name: Z to A</t>
-                                    <t t-set="website_sale_sortable" t-value="[
-                                        (list_price_desc_label, 'list_price desc'),
-                                        (list_price_asc_label, 'list_price asc'),
-                                        (name_asc_label, 'name asc'),
-                                        (name_desc_label, 'name desc')
-                                    ]"/>
-                                    <t t-set="website_sale_sortable_current" t-value="[sort for sort in website_sale_sortable if sort[1]==request.params.get('order', '')]"/>
-                                    <div class="dropdown mt-2 ml-md-2 dropdown_sorty_by">
-                                        <a role="button" href="#" class="dropdown-toggle btn btn-secondary" data-toggle="dropdown">
-                                            <span class="d-none d-lg-inline">
-                                                <t t-if='len(website_sale_sortable_current)'>
-                                                    Sorting by : <t t-raw='website_sale_sortable_current[0][0]'/>
-                                                </t>
-                                                <t t-else='1'>
-                                                    Sort by
-                                                </t>
-                                            </span>
-                                            <i class="fa fa-sort-amount-asc d-lg-none"/>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <t t-foreach="website_sale_sortable" t-as="sortby">
-                                                <a role="menuitem" rel="noindex,nofollow" t-att-href="keep('/shop', order=sortby[1])" class="dropdown-item">
-                                                    <span t-raw="sortby[0]"/>
-                                                </a>
-                                            </t>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <br/>
-                            </div>
                             <div class="row">
                                 <div class="shop_content">
                                     <div t-if="bins" class="row pt my-4">
@@ -76,7 +20,7 @@
                                                         <t t-set="product" t-value="td_product['product']" />
                                                         <t t-attf-class="wrapper"
                                                            t-att-data-ribbon-id="td_product['ribbon'].id">
-                                                            <div class="col-12  col-lg-4 col-md-6 ">
+                                                            <div class="col-12  col-lg-4 col-md-6">
                                                                 <div t-attf-class="Product_wrap">
                                                                     <t t-call="website_sale.products_item"/>
                                                                 </div>
@@ -115,7 +59,7 @@
                     <a t-att-href="product_href">
                         <img t-att-href="product_href"
                              t-attf-src="/web/image?model=product.template&amp;field=image_1920&amp;id=#{product.id}"
-                             style=" width:auto;"/>
+                             style=" width:auto;over-flow: hidden;"/>
                     </a>
                 </div>
             </div>
@@ -126,8 +70,8 @@
                     </li>
                 </div>
             </div>
-            <div class="product_bottom row">
-                <div class="shop_page col-12">
+            <div class="product_bottom">
+                <div class="shop_page">
                     <a itemprop="name" t-att-href="product_href" t-att-content="product.name"
                        t-field="product.name" style="font-size: 16px; color: black;"/>
                     <a role="button" t-if="not product.website_published" t-att-href="product_href"

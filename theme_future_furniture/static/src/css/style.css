@@ -615,7 +615,6 @@ header .card-text {
 
 .Product_wrap .product_bottom {
   margin-top: 15px;
-  display: flex;
 }
 
 .Product_wrap .product_bottom .product_bottom_left a {
@@ -929,7 +928,155 @@ border: none;
   max-width: 24px;
   margin: 10px;
 }
+.Product_wrap .oe_product_cart:hover {
 
+box-shadow: none;
+}
+
+/* [1] The sidebar */
+
+.filter_sidebar .filter_sidebar_sub ul li a {
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.filter_sidebar {
+  text-align: left;
+}
+
+.filter_sidebar hr {
+  width: 81%;
+  display: inline-block;
+  margin: 0;
+}
+
+.filter_sidebar .filter_heading {
+  color: #344b18;
+  margin-bottom: 9px;
+  font-size: 20px;
+  font-weight: 510;
+
+}
+
+.filter_sidebar .filter_sidebar_sub {
+  padding-top: 8px;
+  padding-bottom: 12px;
+}
+
+@media screen and (max-width: 576px) {
+  .filter_sidebar .filter_sidebar_sub {
+    font-size: 14px;
+  }
+}
+
+.filter_sidebar .filter_sidebar_sub .top {
+  font-weight: 800;
+}
+
+.filter_sidebar .filter_sidebar_sub ul {
+  padding-left: 0px;
+}
+
+.filter_sidebar .filter_sidebar_sub ul li {
+    list-style-type: none;
+  line-height: 30px;
+}
+
+.filter_sidebar .filter_sidebar_sub ul li a {
+  color: #344b18;
+  text-decoration: none;
+}
+
+.filter_sidebar .filter_sidebar_sub ul li a:hover {
+  color: #ca9503;
+}
+
+.filter_sidebar .dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid;
+  border: 1px solid;
+}
+
+@media screen and (max-width: 992px) {
+  .filter_sidebar .dot {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .filter_sidebar .dot {
+    height: 13px;
+    width: 13px;
+  }
+}
+
+.filter_sidebar .white {
+  background-color: #fff !important;
+  margin-right: 5px;
+  border: 1px solid;
+  border-color: black;
+}
+
+.filter_sidebar .white:hover {
+  color: #fff;
+  background-color: #f2f2f2 !important;
+  border: none;
+}
+
+.filter_sidebar .theme {
+  background-color: #344b18 !important;
+  margin-right: 5px;
+  border: 1px solid;
+  border-color: black;
+}
+
+.filter_sidebar .theme:hover {
+  color: #fff;
+  background-color: #f2f2f2 !important;
+  border: none;
+}
+
+.filter_sidebar .grey {
+  background-color: #696666 !important;
+  margin-right: 5px;
+  border: 1px solid;
+  border-color: black;
+}
+
+.filter_sidebar .grey:hover {
+  background-color: #f2f2f2 !important;
+  border: none;
+}
+
+.filter_sidebar .blue {
+  background-color: #27bcd6 !important;
+  margin-right: 5px;
+  border: 1px solid;
+  border-color: black;
+}
+
+.filter_sidebar .blue:hover {
+  background-color: #f2f2f2 !important;
+  border: none;
+}
+
+.filter_sidebar .yellow {
+  background-color: #c3ec0d !important;
+  border: 1px solid;
+  border-color: black;
+}
+
+.filter_sidebar .yellow:hover {
+  background-color: #f2f2f2 !important;
+  border: none;
+}
 
 
 
