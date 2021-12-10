@@ -153,4 +153,56 @@
             </div>
         </xpath>
     </template>
+
+    <template id="future_furniture_price_filter" name="Future Furniture Price Filter"
+              inherit_id="website_sale.products_attributes" active="True" customize_show="True" priority="22">
+        <xpath expr="//form[hasclass('js_attributes')]/ul" position="after">
+
+            <div class="product_sidebar mr-1">
+                <div class="filter_sidebar-main">
+                    <h3 class="filter_heading">Price</h3>
+                    <div class="filter_sidebar_sub">
+                        <form class="range-field ">
+                            <input id="calculatorSlider" style="width: 60%;" class="no-border"
+                                   type="range" value="0" min="0" max="30"/>
+                            <input type="hidden" id="classic_store_max_price" name="classic_store_max_price"
+                                   t-att-value="request.env['classic_store.config'].search([],limit=1).max_price"/>
+                            <input type="hidden" id="minimum" name="minimum"/>
+                            <input type="hidden" id="maximum" name="maximum"/>
+                        </form>
+                        <div class="value">
+                            <h5 class="rate" style="color:#3b3c3d" id="resellerEarnings">$75</h5>
+                            <h5 class="rate" style="color:#3d3d3d" id="clientPrice">$100</h5>
+                            <a href="#" class="btn btn-filter">Filter</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="wrapper">
+                    <div class="widget_header">
+                        <hr/>
+                        <h4 style="color:black; font-size: 20px; display: inline;">Price Filter</h4>
+                        <hr/>
+                        <div class="sidebar__filter">
+                            <div class="filter-range-wrap">
+                                <div id="slider-range"/>
+                                <div class="price_wrapper">
+                                    <p>PRICE: <span t-esc="res_company.currency_id.symbol"/></p>
+                                    <input type="text" id="amount" style="border:0; font-weight:bold;"/>
+                                    <br/>
+                                    <div><br/><button class="price_filter_button btn btn-secondary">Filter</button></div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="classic_store_max_price" name="classic_store_max_price"
+                                   t-att-value="request.env['classic_store.config'].search([],limit=1).max_price"/>
+                            <input type="hidden" id="minimum" name="minimum"/>
+                            <input type="hidden" id="maximum" name="maximum"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
 </odoo>
