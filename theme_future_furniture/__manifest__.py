@@ -16,6 +16,7 @@
         'views/assets.xml',
         'views/shop.xml',
         'views/shop_sidebar.xml',
+        'views/cart.xml',
         'views/snippets/trending.xml'
     ],
     'images': [
